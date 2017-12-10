@@ -1,0 +1,121 @@
+'
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <style type="text/css">
+        #bodydiv { margin-left: auto; margin-top: 15px; margin-right: auto; margin-bottom: 50px; } 
+        body { margin-top: 10mm; margin-bottom: 10mm;} 
+        #logo { padding-left: 5%; padding-right: 5%; text-align: left; } 
+        footer { text-align: center; position: relative; bottom: 0; width: 105%; padding-top: 5%; margin-left: -3%; } 
+        footer img { height: auto; width: 10%; } 
+        .heading { padding: 1.5% 5%; } 
+        .pheading { padding-left: 5%; padding-right: 5%; padding-top: -2%; padding-right: -2%; } 
+        .subheadings, .psubheadings { padding: 0% 5%; } 
+        .tablediv { padding-left: 5%; padding-right: 5%; padding-top: 1%; } 
+        .taxTable { padding-left: 50%; padding-right: 5%; padding-top: 1%; } 
+        .description { padding: 5% 0%; } 
+        h5, #imgDiv { display: inline; } 
+        .table .table-bordered .psubheadings { padding-left: 5%; padding-right: 5%; } 
+        .paymentTable { padding-left: 5%; padding-right: 40%; padding-top: 1%; } 
+        @page { size: auto; margin: 4mm; } 
+        #pic { height: auto; width: 15%; }
+        .inputbox {float: right; margin-top: -1%; padding-right: 3%;}
+        textarea {resize: none; width: 500px;}
+    </style>
+</head>
+
+<body>
+    <div id="bodydiv">
+        <div class="heading">
+            <h2>Itemized Receipt</h2>
+        </div>
+        <div id="logo">
+            <h3 id="title"> ' + VenueName + '</h3>
+        </div>
+
+                 <div class="inputbox"> 
+
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" style="border: none;">Bill To: '+ customerName +'\n'+ customerPhone +'\n'+ customerEmail +'</textarea>
+                        </div>
+
+                </div>
+
+                <div class="subheadings">
+
+
+                    <div>
+                        <h5 id="event"><strong>Event: </strong></h5>' + Event + '</div>
+                    <div>
+
+
+                        <h5 id="venue"><strong>Venue: </strong></h5>' + Venue + '</div>
+                    <div>
+                        <h5 id="guests"><strong>Guests: </strong></h5>' + Guests + '</div>
+                    <div>
+                        <h5 id="date"><strong>Date: </strong></h5>' + date + '</div>
+                    <div>
+                        <h5 id="time"><strong>Time: </strong></h5>' + Time + '</div>
+
+                </div>
+
+                
+
+        <div class="tablediv">
+            <table class="table table-bordered" id="table">
+                <thead>
+                    <tr>
+                        <td><strong>Description</strong>
+                        </td>
+                        <td><strong>Unit Price</strong>
+                        </td>
+                        <td><strong>Quantity</strong>
+                        </td>
+                        <td><strong>Sub Total</strong>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>' + table + '</tbody>
+            </table>
+        </div>
+        <div class="taxTable">
+            <table class="table table-bordered" id="taxTableId">
+                <tbody>
+                    <tr>
+                        <td>' + STaxRate + '</td>
+                        <td>' + MenuTotalSTaxes + '</td>
+                    </tr>
+                    <tr>
+                        <td>' + SeTaxRate + '</td>
+                        <td>' + MenuTotalSeTaxes + '</td>
+                    </tr>
+                    <tr>
+                        <td>' + GratuityRate + '</td>
+                        <td>' + MenuTotalGratuity + '</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total:</strong>
+                        </td>
+                        <td><strong>' + MenuTotal + '</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pheading">
+            <h3>Payments</h3>
+        </div>
+        <div class="paymentTable">' + payments + '</div>
+        <footer>Powered by
+            <img src="https://i.imgpile.com/nGyE2S.png" alt=" Eventplicity Inc." id="pic">
+        </footer>
+</body>
+
+</html>';
