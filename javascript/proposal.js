@@ -125,25 +125,35 @@ function processJSON(dat) { // Obtains JSON Required Data
                     // line item name column 
                     table += json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["name"]; 
                     table += "</td>";
-                    table += "<td>";
-                    // line item unit price column
+                    table += "<td>";                            
+                    // line item unit price column                                                                                      placeholder
 
                     if (json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"] == null) {
                         table += "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost"].toFixed(2);
                     } else if (json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"] == "guests") {
-                        "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost"] + " (100 GUESTS)";
-                    } else {
-                      table += "blah";
+                        table += "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost"].toFixed(2) + "\n (" +json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_coef"] + " " + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"].toUpperCase() + ") " ;
+                    } else if (json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"] == "hours") {
+                        table += "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost"].toFixed(2) + "\n (" +json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_coef"] + " " + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"].toUpperCase() + ") " ;
+                    } else if (json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"] == "placeholder") {
+                        table += json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_placeholder"];
                     }
 
                     table += "</td>";
                     table += "<td>";
                     // line item quantity column
-                    table += json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity_type"] == null ? json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity"] : json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity"] + " " + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity_type"].toUpperCase();
+                    if(!(json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"] == "placeholder")) {
+                        table += json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity_type"] == null ? json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity"] : json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity"] + " " + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["quantity_type"].toUpperCase();     
+                    } else {
+                        table += " ";
+                    }
                     table += "</td>";
                     table += "<td>";
                     // line item sub total column
-                    table += json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["cost"] == 0 ? "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["cost"].toFixed(0) : "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["cost"].toFixed(2);
+                    if(!(json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["unit_cost_type"] == "placeholder")) { 
+                        table += json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["cost"] == 0 ? "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["cost"].toFixed(0) : "$" + json["line_items"][Object.keys(order[i][Object.keys(order[i])])]["cost"].toFixed(2);
+                    } else {
+                        table += " "; 
+                    }
                     table += "</td>";
                     table += "</tr>";
     
